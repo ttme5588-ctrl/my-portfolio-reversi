@@ -1,4 +1,3 @@
-/* ★ 1. デフォルトテーマ（ライト）の変数を定義 */
 :root, .light {
   --main-bg-color: #F0F0F3;
   --text-color: #333;
@@ -16,7 +15,6 @@
   --stone-shadow-inset-dark: #00000010;
 }
 
-/* ★ 2. 各テーマ用の変数を上書き */
 .dark {
   --main-bg-color: #2c2c2c;
   --text-color: #f0f0f0;
@@ -81,16 +79,16 @@ body {
 
 .game-info, .game-controls {
   text-align: center;
-  margin-bottom: 20px; /* ボードとの間にスペース */
+  margin-bottom: 20px; 
 }
 
-.game-controls button { /* ボタンは`.game-controls`の子要素としてスタイリング */
-  background-color: var(--main-bg-color); /* 全体の背景色に合わせる */
+.game-controls button { 
+  background-color: var(--main-bg-color); 
   color: var(--text-color);
-  border: none; /* デフォルトのボーダーを削除 */
-  border-radius: 12px; /* 少し丸く */
+  border: none; 
+  border-radius: 12px; 
   padding: 10px 20px;
-  margin: 0 8px; /* ボタン同士の間隔 */
+  margin: 0 8px; 
   cursor: pointer;
   font-size: 1rem;
   box-shadow: -5px -5px 10px var(--shadow-light), 5px 5px 10px var(--shadow-dark);
@@ -146,8 +144,6 @@ body {
   box-shadow:
     -5px -5px 5px var(--shadow-light),
     3px 3px 5px var(--stone-b-shadow-dark);
-    /* inset 3px 3px 5px var(--stone-shadow-inset-light), */
-    /* inset -5px -5px 5px var(--stone-shadow-inset-dark); */
 }
 
 .stone-W {
@@ -155,8 +151,6 @@ body {
   box-shadow:
     -5px -5px 5px var(--shadow-light),
     3px 3px 5px var(--stone-w-shadow-dark);
-    /* inset 3px 3px 5px var(--stone-shadow-inset-light), */
-    /* inset -5px -5px 8px var(--stone-shadow-inset-dark); */
 }
 
 #root { /* index.jsでAppがレンダリングされるroot要素 */

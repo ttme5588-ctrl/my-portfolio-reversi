@@ -2,7 +2,6 @@ import "./App.css"
 import Board from './components/Bord';
 import { useState, useEffect } from 'react';
 
-// 型定義
 type SquareValue = 'B' | 'W' | null;
 type Move = {
   row: number;
@@ -10,10 +9,8 @@ type Move = {
   flips: { row: number; col: number }[];
 };
 
-// ★ 1. テーマのリストを定義
 const themes = ['light', 'dark', 'rose', 'orange'];
 
-// 初期盤面を生成する関数
 function createInitialSquares(): SquareValue[][] {
   const squares: SquareValue[][] = Array(8).fill(null).map(() => Array(8).fill(null));
   squares[3][3] = 'W';
@@ -23,7 +20,6 @@ function createInitialSquares(): SquareValue[][] {
   return squares; 
 }
 
-// 有効な手を計算する関数
 function calculateValidMoves(squares: SquareValue[][], player: 'B' | 'W'): Move[] {
   const directions = [
     [-1, 0], [-1, 1], [0, 1], [1, 1],
@@ -38,8 +34,8 @@ function calculateValidMoves(squares: SquareValue[][], player: 'B' | 'W'): Move[
       }
       let allFlipsInAllDirs: { row: number; col: number }[] = [];
       for (const [dr, dc] of directions) {
-        let flipsInOneDir: {row: number, col: number}[] = [];
-        let currR = r + dr;
+      const flipsInOneDir: {row: number, col: number}[] = [];        
+      let currR = r + dr;
         let currC = c + dc;
         while (currR >= 0 && currR < 8 && currC >= 0 && currC < 8 && squares[currR][currC] === opponent) {
           flipsInOneDir.push({ row: currR, col: currC });
@@ -66,7 +62,6 @@ export default function App() {
   const [isGameOver, setIsGameOver] = useState(false);
   const [winner, setWinner] = useState<string | null>(null);
   
-  // ★ 2. 現在のテーマを管理するstateを追加
   const [currentTheme, setCurrentTheme] = useState(themes[0]);
 
   function handlePlay(row: number, col: number) {
@@ -118,14 +113,12 @@ export default function App() {
     setWinner(null);
   }
   
-  // ★ 3. テーマを切り替える関数
   function handleChangeTheme() {
     const currentIndex = themes.indexOf(currentTheme);
     const nextIndex = (currentIndex + 1) % themes.length;
     setCurrentTheme(themes[nextIndex]);
   }
   
-  // ★ 4. テーマが変更されたらbodyのクラスを書き換えるuseEffect
   useEffect(() => {
     document.body.className = currentTheme;
   }, [currentTheme]);
