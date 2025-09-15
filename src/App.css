@@ -1,0 +1,199 @@
+/* ★ 1. デフォルトテーマ（ライト）の変数を定義 */
+:root, .light {
+  --main-bg-color: #F0F0F3;
+  --text-color: #333;
+  --board-bg-color: #F0F0F3;
+  --square-border-color: rgb(185, 185, 185);
+  --shadow-light: #FFFF;
+  --shadow-dark: #a0a0a073;
+  --shadow-inset-light: #FFF;
+  --shadow-inset-dark: #00000010;
+  --stone-b-color: #000000;
+  --stone-w-color: #F0F0F3;
+  --stone-b-shadow-dark: #00000070;
+  --stone-w-shadow-dark: #0000003f;
+  --stone-shadow-inset-light: #ffffff20;
+  --stone-shadow-inset-dark: #00000010;
+}
+
+/* ★ 2. 各テーマ用の変数を上書き */
+.dark {
+  --main-bg-color: #2c2c2c;
+  --text-color: #f0f0f0;
+  --board-bg-color: #2c2c2c;
+  --square-border-color: #202020;
+  --shadow-light: #3a3a3a;
+  --shadow-dark: #1e1e1e;
+  --shadow-inset-light: #3a3a3a;
+  --shadow-inset-dark: #1e1e1e;
+  --stone-b-color: #2c2c2c;
+  --stone-w-color: #d8d8d8;
+  --stone-b-shadow-dark: #000000a0;
+  --stone-w-shadow-dark: #000000a0;
+  --stone-shadow-inset-light: #ffffff20;
+  --stone-shadow-inset-dark: #00000020;
+}
+.rose {
+  --main-bg-color: #ffd9d9;
+  --text-color: #4d0011;
+  --board-bg-color: #ffd9d9;
+  --square-border-color: #c75069;
+  --shadow-light: #fdecec;
+  --shadow-dark: #00000070;
+  --shadow-inset-light: #ffffff;
+  --shadow-inset-dark: #ffd9d9;
+  --stone-b-color: #555d50;
+  --stone-w-color: #f4c2c2;
+  --stone-b-shadow-dark: #00000070;
+  --stone-w-shadow-dark: #00000070;
+  --stone-shadow-inset-light: #ffffff40;
+  --stone-shadow-inset-dark: #001f3f20;
+}
+.orange {
+  --main-bg-color: #ffebd2;
+  --text-color: #af4f41;
+  --board-bg-color: #ffebd2;
+  --square-border-color: #fffbd280;
+  --shadow-light: #fff9f1;
+  --shadow-dark: #00000070;
+  --shadow-inset-light: #ffffff;
+  --shadow-inset-dark: #ffebd2;
+  --stone-b-color: #e35600;
+  --stone-w-color: #ffebd2;
+  --stone-b-shadow-dark: #00000070;
+  --stone-w-shadow-dark: #00000070;
+  --stone-shadow-inset-light: #ffffff40;
+  --stone-shadow-inset-dark: #001f3f20;
+
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-bg-color); 
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.game-info, .game-controls {
+  text-align: center;
+  margin-bottom: 20px; /* ボードとの間にスペース */
+}
+
+.game-controls button { /* ボタンは`.game-controls`の子要素としてスタイリング */
+  background-color: var(--main-bg-color); /* 全体の背景色に合わせる */
+  color: var(--text-color);
+  border: none; /* デフォルトのボーダーを削除 */
+  border-radius: 12px; /* 少し丸く */
+  padding: 10px 20px;
+  margin: 0 8px; /* ボタン同士の間隔 */
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: -5px -5px 10px var(--shadow-light), 5px 5px 10px var(--shadow-dark);
+  transition: all 0.2s ease-in-out;
+}
+.game-controls button:active {
+  box-shadow: inset -3px -3px 8px var(--shadow-light), inset 3px 3px 8px var(--shadow-dark);
+}
+
+.board {
+  background-color: var(--board-bg-color); 
+  padding: 15px; 
+  border-radius: 20px;
+  box-shadow:-5px -5px 10px var(--shadow-light), 5px 5px 10px var(--shadow-dark);
+  display: inline-block; 
+}
+
+.board-row {
+  display: flex;
+}
+
+.square-cell { 
+  width: 50px; 
+  height: 50px;
+  background-color: var(--board-bg-color); 
+  border: none; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative; 
+  border-right: 1px solid var(--square-border-color);
+  border-bottom: 1px solid var(--square-border-color);
+  box-shadow: inset 1px 1px 2px var(--shadow-dark), 
+              inset -1px -1px 2px var(--shadow-light);
+}
+
+.board-row .square-cell:last-child {
+  border-right: none;
+}
+.board-row:last-child .square-cell {
+  border-bottom: none;
+}
+
+.stone {
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+}
+
+.stone-B {
+  background-color: var(--stone-b-color);
+  box-shadow:
+    -5px -5px 5px var(--shadow-light),
+    3px 3px 5px var(--stone-b-shadow-dark);
+    /* inset 3px 3px 5px var(--stone-shadow-inset-light), */
+    /* inset -5px -5px 5px var(--stone-shadow-inset-dark); */
+}
+
+.stone-W {
+  background-color: var(--stone-w-color);
+  box-shadow:
+    -5px -5px 5px var(--shadow-light),
+    3px 3px 5px var(--stone-w-shadow-dark);
+    /* inset 3px 3px 5px var(--stone-shadow-inset-light), */
+    /* inset -5px -5px 8px var(--stone-shadow-inset-dark); */
+}
+
+#root { /* index.jsでAppがレンダリングされるroot要素 */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.info-stone {
+  width: 25px;   /* 石の幅 */
+  height: 25px;  /* 石の高さ */
+}
+
+.status-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px; /* テキストと石の間隔 */
+  height: 28px; /* レイアウトが崩れないように高さを指定 */
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px; /* スコアとスコアの間隔 */
+}
+.score-item {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 石とスコア数字の間隔 */
+}
